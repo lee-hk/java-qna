@@ -97,17 +97,6 @@ public class QuestionController {
         return "/qna/updateForm";
     }
 
-    @PutMapping("/{id}")
-    public String update(@PathVariable Long id, Question question, HttpSession session) {
-        try {
-            User user = UserController.getSessionUser(session);
-            questionService.updateById(id, question, user);
-            return "redirect:/questions/" + id;
-        } catch (QuestionModifyFailException e) {
-            return "/qna/updateForm_failed";
-        }
-    }
-
 
 
 
