@@ -80,6 +80,17 @@ public class QuestionController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id, HttpSession session) {
+        try {
+            User user = UserController.getSessionUser(session);
+            questionService.deleteById(id, user);
+            return "redirect:/";
+        } catch (QuestionModifyFailException e) {
+            return "redirect:/users/login";
+        }
+    }
+    
     @GetMapping("/{id}/update")
     public String updateForm(@PathVariable Long id, Model model) {
         model.addAttribute("question", questionService.findById(id));
