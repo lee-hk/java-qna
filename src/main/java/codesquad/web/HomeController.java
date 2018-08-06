@@ -13,8 +13,8 @@ public class HomeController {
     private QuestionService questionService;
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("questions", questionService.findAll());
-        return "qna/list";
-    }
+    // public String home(Model model) {
+    //     // model.addAttribute("questions", questionService.findAll());
+    //     return "qna/list";
+    // }
 }

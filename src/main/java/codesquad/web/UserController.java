@@ -40,23 +40,6 @@ public class UserController {
         }
     }
 
-    @PostMapping("/login")
-    public String loginUser(String userId, String password, HttpSession session){
-        try{
-            session.setAttribute(SESSION_ID, userService.login(userId,password));
-            return "redirect:/";
-        }catch(UserLoginFailException e){
-            return "/user/login_failed";
-        }
-
-            @PostMapping("/login")
-    public String loginUser(String userId, String password, HttpSession session){
-        try{
-            session.setAttribute(SESSION_ID, userService.login(userId,password));
-            return "redirect:/";
-        }catch(UserLoginFailException e){
-            return "/user/login_failed";
-        }
     @GetMapping("/logout")
     public String logoutUser(HttpSession session){
         session.removeAttribute(SESSION_ID);

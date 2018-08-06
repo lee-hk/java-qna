@@ -109,13 +109,24 @@ if $cygwin ; then
 fi
 
 # For Migwn, ensure paths are in UNIX format before anything is touched
-if $mingw ; then
-  [ -n "$M2_HOME" ] &&
-    M2_HOME="`(cd "$M2_HOME"; pwd)`"
-  [ -n "$JAVA_HOME" ] &&
-    JAVA_HOME="`(cd "$JAVA_HOME"; pwd)`"
-  # TODO classpath?
-fi
+# if $mingw ; then
+#   [ -n "$M2_HOME" ] &&
+#     M2_HOME="`(cd "$M2_HOME"; pwd)`"
+#   [ -n "$JAVA_HOME" ] &&
+#     JAVA_HOME="`(cd "$JAVA_HOME"; pwd)`"
+#   # TODO classpath?
+# fi
+
+if [ -z "$JAVA_HOME" ]; then
+  javaExecutable="`which javac`"
+  if [ -n "$javaExecutable" ] && ! [ "`expr \"$javaExecutable\" : '\([^ ]*\)'`" = "no" ]; then
+    # readlink(1) is not available as standard on Solaris 10.
+    readLink=`which readlink`
+    if [ ! `expr "$readLink" : '\([^ ]*\)'` = "no" ]; then
+      if $darwin ; then
+        javaHome="`dirname \"$javaExecutable\"`"
+        javaExecutable="`cd \"$javaHome\" && pwd -P`/javac"
+      else
 
 if [ -z "$JAVA_HOME" ]; then
   javaExecutable="`which javac`"

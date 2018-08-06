@@ -45,6 +45,30 @@ public class Question {
         return writer;
     }
 
+    public void setWriter(User writer) {
+        this.writer = writer;
+    }
+
+    public Long getName() {
+        return name;
+    }
+
+    public void setName(Long name) {
+        this.name = name;
+    }
+
+    public User getComment() {
+        return comment;
+    }
+
+    public void setComment(User comment) {
+        this.comment =  comment;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -61,7 +85,6 @@ public class Question {
     public boolean updateQuestion(Question updateQuestion, User user) {
         if (!isOwner(user))
             return false;
-        setContents(updateQuestion.getContents());
         setTitle(updateQuestion.getTitle());
         setContents(updateQuestion.getContents());
         return true;

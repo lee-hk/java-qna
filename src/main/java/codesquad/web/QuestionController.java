@@ -63,6 +63,26 @@ public class QuestionController {
         return "/qna/show";
     }
 
+   @PostMapping("")
+    public String create(Question question, HttpSession session) {
+        User user = UserController.getSessionUser(session);
+        question.setWriter(user);
+        questionService.save(question);
+        return "redirect:/";
+    }
+
+    @GetMapping("")
+    public String list() {
+        return "redirect:/";
+    }
+
+    @GetMapping("/{id}")
+    public String show(@PathVariable Long id, Model model) {
+        model.addAttribute("question", questionService.findById(id));
+        return "/qna/show";
+    }
+
+
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id, HttpSession session) {
         try {
@@ -74,21 +94,21 @@ public class QuestionController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id, HttpSession session) {
+        try {
+            User user = UserController.getSessionUser(session);
+            questionService.deleteById(id, user);
+            return "redirect:/";
+        } catch (QuestionModifyFailException e) {
+            return "redirect:/users/login";
+        }
+    }
+    
     @GetMapping("/{id}/update")
     public String updateForm(@PathVariable Long id, Model model) {
         model.addAttribute("question", questionService.findById(id));
         return "/qna/updateForm";
-    }
-
-    @PutMapping("/{id}")
-    public String update(@PathVariable Long id, Question question, HttpSession session) {
-        try {
-            User user = UserController.getSessionUser(session);
-            questionService.updateById(id, question, user);
-            return "redirect:/questions/" + id;
-        } catch (QuestionModifyFailException e) {
-            return "/qna/updateForm_failed";
-        }
     }
 
 
