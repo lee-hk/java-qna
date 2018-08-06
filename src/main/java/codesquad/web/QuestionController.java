@@ -43,20 +43,6 @@ public class QuestionController {
         return "redirect:/";
     }
 
-    @DeleteMapping("")
-    public String create(Question question, HttpSession session) {
-        User user = UserController.getSessionUser(session);
-        question.setWriter(user);
-        questionService.save(question);
-        return "redirect:/";
-    }
-
-    @SetMapping("")
-    public String list() {
-        return "redirect:/";
-    }
-
-
     @GetMapping("/{id}")
     public String show(@PathVariable Long id, Model model) {
         model.addAttribute("question", questionService.findById(id));
