@@ -10,14 +10,19 @@
               <div class="form-group">
                   <label for="title">제목</label>
                   <input type="text" class="form-control" id="title" name="title" value="{{title}}" placeholder="제목"/>
+              <input type="hidden" name="_method" value="PUT">
+              <div class="form-group">
               </div>
               <div class="form-group">
-                  <label for="contents">내용</label>
-                  <textarea name="contents" id="contents"  rows="5" class="form-control">{{contents}}</textarea>
+                  <label for="title">제목</label>
+                  <input type="text" class="form-control" id="title" name="title" value="{{title}}" placeholder="제목"/>
+              <input type="hidden" name="_method" value="PUT">
+              <div class="form-group">
               </div>
-              <button type="submit" class="btn btn-success clearfix pull-right">질문변경하기</button>
-              <div class="clearfix" />
-          </form>
+              <div class="form-group">
+                  <label for="title">제목</label>
+                  <input type="text" class="form-control" id="title" name="title" value="{{title}}" placeholder="제목"/>
+
           {{/question}}
         </div>
     </div>

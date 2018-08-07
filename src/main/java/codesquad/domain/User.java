@@ -35,11 +35,11 @@ public class User {
         this.userId = userId;
     }
 
-    public void setPassword(String password) {
+    public void setPW(String password) {
         this.password = password;
     }
 
-    public void setName(String name) {
+    public void setNickname(String name) {
         this.name = name;
     }
 
